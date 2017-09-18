@@ -1,4 +1,5 @@
 .idea/
 venv/
+*diagnostics
 */__pycache__
 *.pyc
