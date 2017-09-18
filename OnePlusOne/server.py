@@ -18,6 +18,8 @@ class Server(object):
         adapter = self.url_map.bind_to_environ(request.environ)
         try:
             resource = adapter.match()[0]()
-            return Response(resource.get(), mimetype="text/plain")
+            return Response(getattr(resource, request.method.lower())())
+        except AttributeError:
+            return Response("METHOD NOT ALLOWED", status=405)
         except HTTPException as e:
             return e
