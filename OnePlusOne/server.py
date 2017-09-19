@@ -1,3 +1,4 @@
+import OnePlusOne
 from typing import List
 from werkzeug.exceptions import HTTPException
 from werkzeug.wrappers import Response, Request
@@ -18,8 +19,13 @@ class Server(object):
         adapter = self.url_map.bind_to_environ(request.environ)
         try:
             resource = adapter.match()[0]()
-            return Response(getattr(resource, request.method.lower())())
+            response = Response(getattr(resource, request.method.lower())())
         except AttributeError:
-            return Response("METHOD NOT ALLOWED", status=405)
+            response = Response("METHOD NOT ALLOWED", status=405)
         except HTTPException as e:
-            return e
+            response = Response(e.name, status=e.code)
+
+        # Set HTTP Headers
+        response.headers["Server"] = "OnePlusOne/" + OnePlusOne.__version__
+
+        return response
