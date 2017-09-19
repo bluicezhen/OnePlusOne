@@ -3,3 +3,5 @@ venv/
 *diagnostics
 */__pycache__
 *.pyc
+dist/
+Niuniu.egg-info/
