@@ -1,11 +1,12 @@
 import ast
 import re
+from os import path
 from setuptools import find_packages, setup
 
-# To import Niuniu.__version, I copied some code from
-# https://raw.githubusercontent.com/pallets/werkzeug/master/setup.py
-_version_re = re.compile(r'__version__\s+=\s+(.*)')
-with open('Niuniu/__init__.py', 'rb') as f:
+
+here = path.abspath(path.dirname(__file__))
+_version_re = re.compile('__version__\s+=\s+(.*)')
+with open(here + '/Niuniu/__init__.py', 'rb') as f:
     version = str(ast.literal_eval(_version_re.search(f.read().decode('utf-8')).group(1)))
 
 setup(
