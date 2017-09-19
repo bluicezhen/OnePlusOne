@@ -1,9 +1,16 @@
-import Niuniu
+import ast
+import re
 from setuptools import find_packages, setup
 
+# To import Niuniu.__version, I copied some code from
+# https://raw.githubusercontent.com/pallets/werkzeug/master/setup.py
+_version_re = re.compile(r'__version__\s+=\s+(.*)')
+with open('Niuniu/__init__.py', 'rb') as f:
+    version = str(ast.literal_eval(_version_re.search(f.read().decode('utf-8')).group(1)))
+
 setup(
-    name=Niuniu.__name__,
-    version=Niuniu.__version__,
+    name='Niuniu',
+    version=version,
     description='A web RESTFul framework simple as 1+1',
     long_description=open('README.md', 'rt').read(),
     url='https://github.com/bluicezhen/Niuniu',
