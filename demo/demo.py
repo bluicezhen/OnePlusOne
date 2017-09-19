@@ -1,4 +1,4 @@
-from OnePlusOne import App, Resource
+from Niuniu import App, Resource
 
 
 class ResourceHelloWorld(Resource):

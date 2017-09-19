@@ -1,4 +1,4 @@
-import OnePlusOne
+import Niuniu
 from typing import List
 from werkzeug.exceptions import HTTPException
 from werkzeug.wrappers import Response, Request
@@ -26,6 +26,6 @@ class Server(object):
             response = Response(e.name, status=e.code)
 
         # Set HTTP Headers
-        response.headers["Server"] = "OnePlusOne/" + OnePlusOne.__version__
+        response.headers["Server"] = "Niuniu/" + Niuniu.__version__
 
         return response
