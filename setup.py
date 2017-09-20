@@ -12,7 +12,7 @@ setup(
     name='Niuniu',
     version=version,
     description='A web RESTFul framework simple as 1+1',
-    long_description=open('README.md', 'rt').read(),
+    long_description=open(here +'/README.rst', 'rt').read(),
     url='https://github.com/bluicezhen/Niuniu',
     author='Bluice Zhen',
     author_email='bluice.zhen@gmail.com',
