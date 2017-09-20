@@ -5,3 +5,4 @@ venv/
 *.pyc
 dist/
 Niuniu.egg-info/
+build/

@@ -1,8 +1,7 @@
 import ast
 import re
 from os import path
-from setuptools import find_packages, setup
-
+from setuptools import setup
 
 here = path.abspath(path.dirname(__file__))
 _version_re = re.compile('__version__\s+=\s+(.*)')
@@ -28,7 +27,7 @@ setup(
         'Programming Language :: Python :: Implementation :: CPython',
     ],
     keywords='web framework werkzeug',
-    packages=find_packages(exclude=['Niuniu']),
+    packages=['Niuniu'],
     install_requires=['Werkzeug'],
     python_requires=">=3.6, <4"
 )
