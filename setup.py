@@ -4,9 +4,14 @@ from os import path
 from setuptools import find_packages, setup
 
 
+here = path.abspath(path.dirname(__file__))
+_version_re = re.compile('__version__\s+=\s+(.*)')
+with open(here + '/Niuniu/__init__.py', 'rb') as f:
+    version = str(ast.literal_eval(_version_re.search(f.read().decode('utf-8')).group(1)))
+
 setup(
     name='Niuniu',
-    version="0.0.4",
+    version=version,
     description='A web RESTFul framework simple as 1+1',
     long_description=open('README.md', 'rt').read(),
     url='https://github.com/bluicezhen/Niuniu',
