@@ -28,6 +28,6 @@ setup(
     ],
     keywords='web framework werkzeug',
     packages=['Niuniu'],
-    install_requires=['Werkzeug'],
+    install_requires=['Werkzeug', 'wrapt'],
     python_requires=">=3.6, <4"
 )

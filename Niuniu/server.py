@@ -3,6 +3,7 @@ from typing import List
 from werkzeug.exceptions import HTTPException
 from werkzeug.wrappers import Response, Request
 from werkzeug.routing import Map, Rule
+from Niuniu.exc import ExceptionHTTP
 
 
 class Server(object):
@@ -18,12 +19,14 @@ class Server(object):
     def dispatch_request(self, request):
         adapter = self.url_map.bind_to_environ(request.environ)
         try:
-            resource = adapter.match()[0]()
+            resource = adapter.match()[0](request)
             response = Response(getattr(resource, request.method.lower())())
         except AttributeError:
             response = Response("METHOD NOT ALLOWED", status=405)
         except HTTPException as e:
             response = Response(e.name, status=e.code)
+        except ExceptionHTTP as e:
+            response = Response(e.desc, status=e.code)
 
         # Set HTTP Headers
         response.headers["Server"] = "Niuniu/" + Niuniu.__version__
