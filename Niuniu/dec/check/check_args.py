@@ -13,7 +13,7 @@ def check_args(param_rules: List[ParamRule] = list(), param_rules_optional: List
     """
     @wrapt.decorator
     def decorated_function(wrapped, instance, args, kwargs):
-        _args = instance.args
+        _args = getattr(instance, "_args")
 
         # Check if all params exist & data type correct
         for param_rule in param_rules:
@@ -37,7 +37,7 @@ def check_args(param_rules: List[ParamRule] = list(), param_rules_optional: List
             except ValueError:
                 raise ExceptionHTTP(400, f"Wrong Param Type: Type(\"{param_rule.name}\") Is {param_rule.type.__name__}")
 
-        instance.args = _args
+        setattr(instance, "_args", _args)
         return wrapped(*args, **kwargs)
 
     return decorated_function

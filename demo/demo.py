@@ -3,9 +3,8 @@ from Niuniu.dec.check import ParamRule, check_args
 
 
 class ResourceHelloWorld(Resource):
-    @check_args(param_rules=[ParamRule("aaa", int)])
-    def get(self):
-        print(self.args)
+    @check_args(param_rules=[ParamRule("test", int)])
+    def post(self):
         return "hello world"
 
 
